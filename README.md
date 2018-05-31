@@ -35,4 +35,8 @@ The entire device, however, was designed to be powered by a wall outlet.
 
 **Schematic:**
 
-![Schematic](https://github.com/jasoncros/FingerprintSecureLock/blob/master/sch_w18.png "Schematic")
+![Schematic](https://github.com/jasoncros/FingerprintSecureLock/blob/master/sch_w18.gif "Schematic")
+
+**Android App:**
+
+![App](https://github.com/jasoncros/FingerprintSecureLock/blob/master/BlueToothConnect.gif "App")
