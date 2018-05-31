@@ -18,6 +18,7 @@
 // servo: pos 0 = lock, pos 90 = unlock
 
 //initialization
+char command;
 int getFingerprintIDez(); //not needed?
 void updateServo();
 const int rs=4,en=5,d4=6,d5=7,d6=8,d7=9;
@@ -29,18 +30,41 @@ Adafruit_Fingerprint finger = Adafruit_Fingerprint(&mySerial);
 LiquidCrystal lcd(rs, en, d4, d5, d6, d7);
 RTC_DS1307 rtc;
 
+int inPin = 11;         // the number of the input pin
+int outPin = 12;       // the number of the output pin
+
+int state = HIGH;      // the current state of the output pin
+int reading;           // the current reading from the input pin
+int previous = LOW;    // the previous reading from the input pin
+
+// the follow variables are long's because the time, measured in miliseconds,
+// will quickly become a bigger number than can be stored in an int.
+long time = 0;         // the last time the output pin was toggled
+long debounce = 500;   // the debounce time, increase if the output flickers
+
 void setup()
 { 
-  Serial.begin(9600); // initialize the serial communications:
+  Serial.begin(9600); // initialize the serial communications
   lcd.begin(16,2); lcd.setCursor(0,0); lcd.print("Scan your finger");
   finger.begin(57600); // set the data rate for the sensor serial port
   lcd.setCursor(0,1);
   setupRTC();
   updateRTC();
+  myServo.attach(10);
+  //pinMode(inPin, INPUT);
+  //pinMode(outPin, OUTPUT);
 }
 
 void loop() 
 {
+  if(state == HIGH){
+    readData();
+  }
+  else {
+    getFingerprintID();
+  }
+
+  readData();
   getFingerprintID();
   delay(100);
 }
@@ -223,3 +247,44 @@ void printDigits(byte digits){
     lcd.print('0');
   lcd.print(digits, DEC);   
 }
+
+void readData(){
+  command = Serial.read();
+  if(command == 'u')
+  {
+    //unlock
+    lcd.clear();
+    lcd.print("unlocked");
+    myServo.write(0);
+    delay(500);
+  }
+  if(command == 'l')
+  {
+    //lock
+    lcd.clear();
+    lcd.print("locked");
+    myServo.write(180);
+    delay(500);
+  }
+}
+
+void buttonToSwitch(){
+  reading = digitalRead(inPin);
+
+  // if the input just went from LOW and HIGH and we've waited long enough
+  // to ignore any noise on the circuit, toggle the output pin and remember
+  // the time
+  if (reading == HIGH && previous == LOW && millis() - time > debounce) {
+    if (state == HIGH)
+      state = LOW;
+    else
+      state = HIGH;
+
+    time = millis();    
+  }
+
+  digitalWrite(outPin, state);
+
+  previous = reading;
+}
+
