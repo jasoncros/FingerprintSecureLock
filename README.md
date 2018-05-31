@@ -30,7 +30,7 @@ The entire device, however, was designed to be powered by a wall outlet.
 1. https://cdn-shop.adafruit.com/datasheets/TC1602A-01T.pdf
 2. https://www.arduino.cc/en/uploads/Main/arduino-uno-schematic.pdf
 3. http://www.wecl.com.hk/distribution/catalogs/058-31-0328.pdf
-4. http://www.atmel.com/images/Atmel-8271-8-bit-AVR- Microcontroller-ATmega48A-48PA-88A-88PA-168A-168PA-328-328P_datasheet_Complete.pdf
+4. http://www.atmel.com/images/Atmel-8271-8-bit-AVR-Microcontroller-ATmega48A-48PA-88A-88PA-168A-168PA-328-328P_datasheet_Complete.pdf
 5. https://cdn-learn.adafruit.com/downloads/pdf/adafruit-optical-fingerprint-sensor.pdf
 
 **Schematic:**
