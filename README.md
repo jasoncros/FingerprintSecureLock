@@ -35,4 +35,4 @@ The entire device, however, was designed to be powered by a wall outlet.
 
 **Schematic:**
 
-![Schematic]https://github.com/jasoncros/FingerprintSecureLock/sch_w18.png "Schematic"]
+![Schematic](https://github.com/jasoncros/FingerprintSecureLock/sch_w18.png "Schematic")
