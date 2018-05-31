@@ -1,3 +1,5 @@
+![](https://github.com/jasoncros/FingerprintSecureLock/blob/master/lock.gif "Lock")
+
 This was part of a Senior Project developed using Arduino IDE (for the Arduino Uno
  microcontroller) and Android Studio (in order to create an associated mobile app). 
 
